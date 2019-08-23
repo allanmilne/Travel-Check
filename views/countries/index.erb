@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  <h1 style="margin-left:32rem;">Travel Bucket List</h1>
+  <h2 style="margin-left:36rem;">Countries</h2>
+
+  <table>
+    <tr>
+      <th>Country</th>
+    </tr>
+<% for country in @countries %>
+    <tr>
+      <td><%= country.name  %></td>
+    </tr>
+<% end %>
+  </table>
+
+  </body>
+</html>
