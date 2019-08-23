@@ -1,4 +1,4 @@
-require('..db/sql_runner')
+require_relative( '../db/sql_runner' )
 
 class Country
 
@@ -9,7 +9,12 @@ class Country
     @name = options['name']
   end
 
-
+  def save()
+    sql = "INSERT into countries(name)VALUES($1)RETURNING id"
+    values = [@name]
+    results = SqlRunner.run(sql, values)
+    @id = results.first()['id'].to_i
+  end
 
 
 end

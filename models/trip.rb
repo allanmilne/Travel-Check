@@ -1,4 +1,4 @@
-require('..db/sql_runner')
+require_relative( '../db/sql_runner' )
 
 class Trip
 
@@ -7,7 +7,7 @@ class Trip
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @city_id = options['city_id'].to_i
-    @visited? = options[visited?]
+    @visited = options['visited']
   end
 
 
