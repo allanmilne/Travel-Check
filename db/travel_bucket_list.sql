@@ -9,12 +9,12 @@ CREATE TABLE countries (
 
 CREATE TABLE cities (
   id SERIAL8 primary key,
-  name VARCHAR(255) not null,
-  country_id INT8 references countries(id)
+  name VARCHAR(255),
+  country_id INT8 REFERENCES countries(id) ON DELETE CASCADE
 );
 
 CREATE TABLE trips (
   id SERIAL8 primary key,
-  city_id INT8 references cities(id),
+  city_id INT8 REFERENCES cities(id),
   visited BOOLEAN
 );
