@@ -1,6 +1,6 @@
 DROP TABLE trips;
-DROP TABLE countries;
 DROP TABLE cities;
+DROP TABLE countries;
 
 CREATE TABLE countries (
   id SERIAL8 primary key,
