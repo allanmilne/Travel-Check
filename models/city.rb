@@ -2,30 +2,41 @@ require_relative( '../db/sql_runner' )
 
 class City
 
-  attr_reader( :id, :country_id )
-  attr_accessor( :name )
+  attr_reader( :id)
+  attr_accessor( :name, :country_id, :visited  )
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @name = options['name']
     @country_id = options['country_id'].to_i
+    @visited = options['visited']
+  end
+
+  # display country city belongs to
+  def country
+    country = Country.find(@country_id)
+    return country
+  end
+
+  def visited?
+    
   end
 
   def save()
-    sql = "INSERT INTO cities (name, country_id)
-           VALUES ($1, $2)
+    sql = "INSERT INTO cities (name, country_id, visited)
+           VALUES ($1, $2, $3)
            RETURNING id"
-    values = [@name, @country_id]
+    values = [@name, @country_id, @visited]
     results = SqlRunner.run(sql, values)
     @id = results.first()['id'].to_i
   end
 
   def update()
-  sql = "UPDATE cities
-        SET (name,country_id) = ($1, $2)
-        WHERE id = $3"
-  values = [@name, @country_id, @id]
-  SqlRunner.run( sql, values )
+    sql = "UPDATE cities
+        SET (name, country_id, visited) = ($1, $2, $3)
+        WHERE id = $4"
+    values = [@name, @country_id, @visited, @id]
+    SqlRunner.run( sql, values )
   end
 
   def delete()
@@ -33,7 +44,6 @@ class City
     values = [@id]
     SqlRunner.run(sql, values)
   end
-
 
   def self.all()
     sql = "SELECT * FROM cities"
@@ -44,6 +54,14 @@ class City
   def self.delete_all()
     sql = "DELETE FROM cities"
     SqlRunner.run(sql)
+  end
+
+  def self.find(id)
+    sql = "SELECT * FROM cities
+           WHERE id = $1"
+    values = [id]
+    results = SqlRunner.run(sql, values)
+    return City.new(results.first)
   end
 
   # Helper methods for mapping

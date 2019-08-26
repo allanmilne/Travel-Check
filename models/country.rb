@@ -10,6 +10,19 @@ class Country
     @name = options['name']
   end
 
+
+
+  def cities()
+    sql = "SELECT cities.* FROM cities
+           WHERE city.country_id = $1"
+    values = [@id]
+    city_data = SqlRunner.run(sql, values)
+    return City.map_items(city_data)
+  end
+
+
+
+
   def save()
     sql = "INSERT INTO countries(name)
            VALUES($1)
@@ -28,7 +41,8 @@ class Country
   end
 
   def delete()
-    sql = "DELETE FROM countries WHERE id = $1"
+    sql = "DELETE FROM countries
+           WHERE id = $1"
     values = [@id]
     SqlRunner.run(sql, values)
   end
@@ -44,12 +58,17 @@ class Country
     return Country.map_items(country_data)
   end
 
+  def self.find(id)
+    sql = "SELECT * FROM countries
+           WHERE id = $1"
+    values = [id]
+    results = SqlRunner.run(sql, values)
+    return Country.new(results.first)
+  end
+
   # Helper methods for mapping
   def self.map_items(country_data)
     result = country_data.map { |country| Country.new( country ) }
     return result
   end
-
-
-
 end
