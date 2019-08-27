@@ -12,14 +12,19 @@ class City
     @visited = options['visited']
   end
 
-  # display country city belongs to
+  # display the country that the city belongs to
   def country
     country = Country.find(@country_id)
     return country
   end
 
-  def visited?
-    
+  # display if city has been visited
+  def self.visited
+    sql = "SELECT * FROM cities
+           WHERE visited = true"
+    result = SqlRunner.run(sql)
+    cities_visited = result.map { |city| City.new(city) }
+    return cities_visited
   end
 
   def save()

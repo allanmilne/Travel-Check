@@ -10,18 +10,15 @@ class Country
     @name = options['name']
   end
 
-
-
+  # display cities belonging to country
   def cities()
-    sql = "SELECT cities.* FROM cities
-           WHERE city.country_id = $1"
+    sql = "SELECT * FROM cities
+           WHERE cities.country_id = $1"
     values = [@id]
     city_data = SqlRunner.run(sql, values)
-    return City.map_items(city_data)
+    cities = City.map_items(city_data)
+    return cities
   end
-
-
-
 
   def save()
     sql = "INSERT INTO countries(name)
@@ -57,6 +54,7 @@ class Country
     country_data = SqlRunner.run(sql)
     return Country.map_items(country_data)
   end
+
 
   def self.find(id)
     sql = "SELECT * FROM countries

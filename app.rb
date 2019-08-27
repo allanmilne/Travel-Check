@@ -4,6 +4,7 @@ require_relative('controllers/countries_controller')
 # require_relative('controllers/')
 # require_relative('controllers/')
 
-get '/' do
-  erb( :index )
+
+get "/" do
+  erb :"/countries/welcome"
 end

@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+<h1>Travel Bucket List</h1>
+<h2>Countries</h2>
 
-  <h1 style="margin-left:32rem;">Travel Bucket List</h1>
-  <h2 style="margin-left:36rem;">Countries</h2>
-
-  <table>
-    <tr>
-      <th>Country</th>
-    </tr>
-<% for country in @countries %>
-    <tr>
-      <td><%= country.name  %></td>
-    </tr>
-<% end %>
-  </table>
-
-  </body>
-</html>
+<table>
+  <tr>
+    <th>Country</th>
+  </tr>
+  <% for country in @countries %>
+  <tr>
+    <td><a href="/countries/<%=country.id %>"><%= country.name  %></a></td>
+  </tr>
+  <% end %>
+</table>
+<br>
+<a href="/">Back to homepage</a>
