@@ -10,14 +10,17 @@ get '/index' do
 end
 
 # create new country
-get '/new' do
+get "/new" do
   erb :"countries/new"
+end
+
+# show cities in a country
+get "/countries/:id" do
+  @country = Country.find(params['id'])
+  erb :"countries/show"
 end
 
 # edit a country
 
 
 # delete a country
-
-
-# show cities in a country

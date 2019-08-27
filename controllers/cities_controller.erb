@@ -1,0 +1,10 @@
+require( 'sinatra' )
+require( 'sinatra/contrib/all' )
+require_relative( '../models/city' )
+also_reload( '../models/*' )
+
+# display cities of country
+get '/cities' do
+  @countries = Country.all()
+  erb :"countries/index"
+end

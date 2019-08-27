@@ -1,4 +1,5 @@
 require_relative( '../db/sql_runner' )
+require_relative( '../models/city')
 
 class Country
 
@@ -10,7 +11,7 @@ class Country
     @name = options['name']
   end
 
-  # display cities belonging to country
+  # display cities belonging to Country
   def cities()
     sql = "SELECT * FROM cities
            WHERE cities.country_id = $1"

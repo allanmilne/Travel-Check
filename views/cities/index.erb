@@ -1,0 +1,15 @@
+<h1>Travel Bucket List</h1>
+<h2>Cities</h2>
+
+<table>
+  <tr>
+    <th>Cities belonging to <a href="#">Country.name</a> </th>
+  </tr>
+  <% for cities in @countries %>
+  <tr>
+    <td><%=country.cities %><%= city.name  %></td>
+  </tr>
+  <% end %>
+</table>
+<br>
+<a href="/">Back to homepage</a>
