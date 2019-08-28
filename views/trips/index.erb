@@ -1,0 +1,23 @@
+<h2>Trips</h2>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Trip Name</th>
+    <th>Visited</th>
+    <th>City ID</th>
+  </tr>
+  <% for trip in @trips %>
+  <tr>
+    <td><%= trip.id %></td>
+    <td><a href="/trips/<%=trip.id%>"><%= trip.name %></a></td>
+    <td><%= trip.visited %></td>
+    <td><%= trip.city_id %></td>
+  </tr>
+  <% end %>
+</table>
+
+<br />
+
+<div>
+  <a href="/trips/new">Add Trip</a>
+</div>

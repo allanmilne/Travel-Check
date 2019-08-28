@@ -1,29 +1,28 @@
 class Trip
 attr_reader(:id)
-attr_accessor(:name, :visited, :country_id, :city_id)
+attr_accessor(:name, :visited, :city_id)
 
 def initialize(options)
   @name = options['name']
   @visited = options['visited']
-  @country_id = options['country_id'].to_i
   @city_id = options['city_id'].to_i
-  @id ||= options['id'].to_i
+  @id = options['id'].to_i if options['id']
 end
 
 def save()
-  sql = "INSERT INTO trips (name, visited, country_id, city_id)
-         VALUES ($1, $2, $3, $4)
+  sql = "INSERT INTO trips (name, visited, city_id)
+         VALUES ($1, $2, $3)
          RETURNING id;"
-  values = [@name,@visited, @country_id, @city_id]
+  values = [@name,@visited, @city_id]
   results = SqlRunner.run(sql, values)
   @id = results.first()['id'].to_i
 end
 
 def update()
   sql = "UPDATE trips
-      SET (name, visited, country_id, city_id) = ($1, $2, $3, $4)
+      SET (name, visited, city_id) = ($1, $2, $3)
       WHERE id = $5"
-  values = [@name, @visited, @country_id, @city_id, @id]
+  values = [@name, @visited, @city_id, @id]
   SqlRunner.run( sql, values )
 end
 

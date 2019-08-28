@@ -1,0 +1,24 @@
+<h2>Edit <%= @city.name %></h2>
+
+<div>
+  <form method="post" action="/cities/<%= @city.id %>">
+  <!-- drop down country list -->
+    <label for="country-id">Country Name:</label>
+    <select id="country-id" name="country_id">
+      <% for country in @countries %>
+      <option value="<%= country.id %>" >
+      <%= country.name %> </option>
+      <% end %>
+    </select>
+  <!-- input city name box -->
+      <label for="city-name">City Name:</label>
+      <input type="text" name="name" id="city-name" value="<%= @city.name %>"/>
+  <!-- submit button -->
+      <input type="submit" value="Submit">
+    </form>
+</div>
+
+<br />
+<div>
+  <a href="/cities/<%= @city.id %>">Back</a>
+</div>

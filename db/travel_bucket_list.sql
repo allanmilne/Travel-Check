@@ -17,6 +17,5 @@ CREATE TABLE trips (
 id SERIAL8 PRIMARY KEY,
 name VARCHAR,
 visited BOOLEAN,
-country_id INT8 REFERENCES countries(id) ON DELETE CASCADE,
 city_id INT8 REFERENCES cities(id) ON DELETE CASCADE
 );
