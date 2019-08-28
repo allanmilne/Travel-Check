@@ -2,11 +2,11 @@
 
 <div>
   <form method="post" action="/cities/<%= @city.id %>">
-  <!-- input city name box -->
+  <fieldset>
     <label for="city-name">City Name:</label>
     <input type="text" name="name" id="city-name" value="<%= @city.name %>"/>
-
-  <!-- drop down country list -->
+  </fieldset>
+  <fieldset>
     <label for="country-id">Country Name:</label>
     <select id="country-id" name="country_id" selected="<%= @country.id %>">
       <% @countries.each do |country| %>
@@ -17,11 +17,9 @@
         <% end %>
       <% end %>
     </select>
-
-
-  <!-- submit button -->
-      <input type="submit" value="Submit">
-    </form>
+  </fieldset>
+    <input type="submit" value="Submit">
+  </form>
 </div>
 
 <br />

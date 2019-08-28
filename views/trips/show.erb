@@ -1,16 +1,18 @@
 <h2>Details</h2>
 <table>
   <tr>
-    <th>ID</th>
     <th>Trip Name</th>
     <th>Visited</th>
-    <th>City ID</th>
+    <th>City</th>
   </tr>
   <tr>
-    <td><%= @trip.id %></td>
     <td><%= @trip.name %></td>
-    <td><%= @trip.visited %></td>
-    <td><%= @trip.city_id %></td>
+    <td><% if @trip.visited == 'f'%>
+          <%= "❌" %>
+        <% else %>
+          <%= "✅" %>
+          <% end %></td>
+    <td><%= @trip.city.name %></td>
   </tr>
 </table>
 <br />

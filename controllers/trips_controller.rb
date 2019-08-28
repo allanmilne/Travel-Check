@@ -21,6 +21,7 @@ end
 # edit trip form
 get "/trips/:id/edit" do
   @trip = Trip.find(params['id'])
+  @city = City.find(@trip.city_id)
   @cities = City.all()
   erb :"trips/edit"
 end

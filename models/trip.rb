@@ -9,6 +9,14 @@ def initialize(options)
   @id = options['id'].to_i if options['id']
 end
 
+# display the city that the trip belongs to
+def city()
+  sql ="SELECT * FROM cities WHERE id = $1"
+  values = [@city_id]
+  results = SqlRunner.run(sql, values)
+  return City.new(results.first)
+end
+
 def save()
   sql = "INSERT INTO trips (name, visited, city_id)
          VALUES ($1, $2, $3)

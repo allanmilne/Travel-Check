@@ -2,24 +2,29 @@
 
 <div>
   <form method="post" action="/trips/<%= @trip.id %>">
-    <!-- input trip name box -->
-    <label for="trip-name">Trip Name:</label>
-    <input type="text" name="name" id="trip-name" value="<%= @trip.name %>" >
-    <!-- drop down city list -->
-    <label for="city-id">City Name:</label>
-    <select id="city-id" name="city_id">
-      <% for city in @cities %>
-      <option value="<%= city.id %>" >
-      <%= city.name %> </option>
-      <% end %>
-    </select>
-    <!-- drop down visited option -->
-    <label for="visited">Visited:</label>
-    <select id="visited" name="visited">
-      <option value="false"selected>False</option>
-      <option value="true">True</option>
-    </select>
-    <!-- submit button -->
+    <fieldset>
+      <label for="trip-name">Trip Name:</label>
+      <input type="text" name="name" id="trip-name" value="<%= @trip.name %>" >
+    </fieldset>
+    <fieldset>
+      <label for="city-id">City Name:</label>
+      <select id="city-id" name="city_id" selected="<%= @city.id %>">
+        <% @cities.each do |city| %>
+          <% if @trip.city_id == city.id %>
+            <option value=<%= city.id %> selected><%= city.name %></option>
+          <% else %>
+            <option value=<%= city.id %>><%= city.name %></option>
+          <% end %>
+        <% end %>
+      </select>
+    </fieldset>
+    <fieldset>
+      <label for="visited-select">Visited:</label>
+      <select id="visited-select" name="visited">
+        <option value="false"<%= "selected" if @trip.visited == "f" %>> ❌ </option>
+        <option value="true"<%= "selected" if @trip.visited == "t" %>> ✅ </option>
+      </select>
+    </fieldset>
     <input type="submit" value="Submit">
   </form>
 </div>
