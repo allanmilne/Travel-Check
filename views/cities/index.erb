@@ -3,13 +3,13 @@
   <tr>
     <th>ID</th>
     <th>City</th>
-    <th>Country ID</th>
+    <th>Country</th>
   </tr>
   <% for city in @cities %>
   <tr>
     <td><%= city.id %></td>
     <td><a href="/cities/<%=city.id%>"><%= city.name %></a></td>
-    <td><%= city.country_id %></td>
+    <td><%= city.country.name %></td>
   </tr>
   <% end %>
 </table>

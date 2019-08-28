@@ -2,17 +2,23 @@
 
 <div>
   <form method="post" action="/cities/<%= @city.id %>">
+  <!-- input city name box -->
+    <label for="city-name">City Name:</label>
+    <input type="text" name="name" id="city-name" value="<%= @city.name %>"/>
+
   <!-- drop down country list -->
     <label for="country-id">Country Name:</label>
-    <select id="country-id" name="country_id">
-      <% for country in @countries %>
-      <option value="<%= country.id %>" >
-      <%= country.name %> </option>
+    <select id="country-id" name="country_id" selected="<%= @country.id %>">
+      <% @countries.each do |country| %>
+        <% if @city.country_id == country.id %>
+          <option value=<%= country.id %> selected><%= country.name %></option>
+        <% else %>
+          <option value=<%= country.id %>><%= country.name %></option>
+        <% end %>
       <% end %>
     </select>
-  <!-- input city name box -->
-      <label for="city-name">City Name:</label>
-      <input type="text" name="name" id="city-name" value="<%= @city.name %>"/>
+
+
   <!-- submit button -->
       <input type="submit" value="Submit">
     </form>

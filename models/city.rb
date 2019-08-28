@@ -13,8 +13,10 @@ class City
 
   # display the country that the city belongs to
   def country
-    country = Country.find(@country_id)
-    return country
+    sql ="SELECT * FROM countries WHERE id = $1"
+    values = [@country_id]
+    results = SqlRunner.run(sql, values)
+    return Country.new(results.first)
   end
 
   def save()

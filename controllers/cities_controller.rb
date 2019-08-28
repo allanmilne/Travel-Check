@@ -20,6 +20,7 @@ end
 # edit city form
 get "/cities/:id/edit" do
   @city = City.find(params['id'])
+  @country = Country.find(params['id'])
   @countries = Country.all()
   erb :"cities/edit"
 end
