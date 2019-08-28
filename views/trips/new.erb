@@ -1,0 +1,30 @@
+<h2>Add a trip to your bucket list</h2>
+
+<div>
+  <form method="post" action="/trips">
+    <!-- drop down city list -->
+    <label for="city-id">City Name:</label>
+    <select id="city-id" name="city_id">
+      <% for city in @cities %>
+      <option value="<%= city.id %>" >
+      <%= city.name %> </option>
+      <% end %>
+    </select>
+    <!-- input trip name box -->
+    <label for="trip-name">Trip Name:</label>
+    <input type="text" name="name" id="trip-name"/
+    <!-- drop down visited option -->
+    <label for="visited">Visited:</label>
+    <select id="visited" name="visited">
+      <option value="false"selected>False</option>
+      <option value="true">True</option>
+    </select>
+    <!-- submit button -->
+    <input type="submit" value="Submit">
+  </form>
+</div>
+<br />
+
+<div>
+  <a href="/cities">Back</a>
+</div>

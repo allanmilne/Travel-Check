@@ -21,7 +21,7 @@ end
 def update()
   sql = "UPDATE trips
       SET (name, visited, city_id) = ($1, $2, $3)
-      WHERE id = $5"
+      WHERE id = $4"
   values = [@name, @visited, @city_id, @id]
   SqlRunner.run( sql, values )
 end
