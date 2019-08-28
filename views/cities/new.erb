@@ -8,17 +8,23 @@
 <br>
 <br>
 <form method="post" action="/cities">
-<!-- type city name -->
-  <label for="city-name">City:</label>
-  <input type="text" name="name" id="city-name"/>
-<!-- select country from drop down -->
+
+<!-- drop down country list -->
   <label for="country-id">Country:</label>
-  <select>
-    <option value="country-id">1</option>
+  <select id="country-id" name="country_id">
+    <% for country in @countries %>
+    <option value="<%= country.id %>" >
+    <%= country.name %> </option>
+    <% end %>
   </select>
-<!-- submt button -->
-  <input type="submit" value="Submit">
-</form>
+
+<!-- input city name box -->
+    <label for="city-name">City:</label>
+    <input type="text" name="name" id="city-name"/>
+
+<!-- submit button -->
+    <input type="submit" value="Submit">
+  </form>
 
 <br />
 
