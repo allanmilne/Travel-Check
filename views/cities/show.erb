@@ -1,0 +1,22 @@
+<h2>Details</h2>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>City</th>
+    <th>Country ID</th>
+  </tr>
+  <tr>
+    <td><%= @city.id %></td>
+    <td><%= @city.name %></td>
+    <td><%= @city.country_id %></td>
+  </tr>
+</table>
+<br />
+<div>
+<a href="/cities/<%= @city.id %>/edit">Edit</a>
+<a href="/cities/<%= @city.id %>/delete">Delete</a>
+</div>
+<br  />
+<div>
+  <a href="/cities">Back</a>
+</div>

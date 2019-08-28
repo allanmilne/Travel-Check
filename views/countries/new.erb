@@ -1,10 +1,13 @@
-<h1>Add a country to your bucket list</h1>
+<h2>Add a country to your bucket list</h2>
+
+<form method="post" action="/countries">
+  <label for="country-name">Country:</label>
+  <input type="text" name="name" id="country-name"/>
+  <input type="submit" value="Submit">
+</form>
+
+<br />
 
 <div>
-  <form action="/create" method="post">
-    <label for="country">Country</label>
-    <input type="text" name="country" value="">
-  </form>
+  <a href="/countries">Back</a>
 </div>
-
-<a href="/">Back to homepage</a>

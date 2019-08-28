@@ -56,6 +56,12 @@ class Country
     return Country.map_items(country_data)
   end
 
+  def self.delete(id)
+    sql = "DELETE FROM countries
+    WHERE id = $1"
+    values = [id]
+    SqlRunner.run( sql, values )
+  end
 
   def self.find(id)
     sql = "SELECT * FROM countries

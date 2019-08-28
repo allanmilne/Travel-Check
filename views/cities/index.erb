@@ -1,15 +1,21 @@
-<h1>Travel Bucket List</h1>
 <h2>Cities</h2>
-
 <table>
   <tr>
-    <th>Cities belonging to <a href="#">Country.name</a> </th>
+    <th>ID</th>
+    <th>City</th>
+    <th>Country ID</th>
   </tr>
-  <% for cities in @countries %>
+  <% for city in @cities %>
   <tr>
-    <td><%=country.cities %><%= city.name  %></td>
+    <td><%= city.id %></td>
+    <td><a href="/cities/<%=city.id%>"><%= city.name %></a></td>
+    <td><%= city.country_id %></td>
   </tr>
   <% end %>
 </table>
-<br>
-<a href="/">Back to homepage</a>
+
+<br />
+
+<div>
+  <a href="/cities/new">Add City</a>
+</div>

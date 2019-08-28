@@ -3,24 +3,52 @@ require( 'sinatra/contrib/all' )
 require_relative( '../models/country' )
 also_reload( '../models/*' )
 
-# homepage
-get '/index' do
+# display all countries
+get '/countries' do
   @countries = Country.all()
   erb :"countries/index"
 end
 
-# create new country
-get "/new" do
+# create new country form
+get "/countries/new" do
   erb :"countries/new"
 end
 
-# show cities in a country
+# edit country form
+get "/countries/:id/edit" do
+  @country = Country.find(params['id'])
+  erb :"countries/edit"
+end
+
+# delete country
+get "/countries/:id/delete" do
+  @country = Country.find(params['id'])
+  @country.delete
+  erb :"countries/delete"
+end
+
+# show country details
 get "/countries/:id" do
   @country = Country.find(params['id'])
   erb :"countries/show"
 end
 
-# edit a country
+# save country to db
+post "/countries" do
+  @country = Country.new(params)
+  @country.save
+  redirect to '/countries'
+end
 
+# update country db entry
+post "/countries/:id" do
+  @country = Country.new(params)
+  @country.update
+  redirect to "/countries"
+end
 
-# delete a country
+# # show cities in a country
+# get "/countries/:id" do
+#   @country = Country.find(params['id'])
+#   erb :"countries/show"
+# end

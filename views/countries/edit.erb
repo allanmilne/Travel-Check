@@ -1,0 +1,14 @@
+<h2>Edit <%= @country.name %></h2>
+
+<div>
+  <form method="post" action="/countries/<%= @country.id %>">
+    <label for="country-name">Country Name:</label>
+    <input type="text" name="name" id="country-name" value="<%= @country.name %>">
+    <input type="submit" value="Save">
+  </form>
+</div>
+
+<br />
+<div>
+  <a href="/countries/<%= @country.id %>">Back</a>
+</div>

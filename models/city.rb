@@ -3,13 +3,12 @@ require_relative( '../db/sql_runner' )
 class City
 
   attr_reader( :id)
-  attr_accessor( :name, :country_id, :visited  )
+  attr_accessor( :name, :country_id)
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @name = options['name']
     @country_id = options['country_id'].to_i
-    @visited = options['visited']
   end
 
   # display the country that the city belongs to
@@ -18,29 +17,20 @@ class City
     return country
   end
 
-  # display if city has been visited
-  def self.visited
-    sql = "SELECT * FROM cities
-           WHERE visited = true"
-    result = SqlRunner.run(sql)
-    cities_visited = result.map { |city| City.new(city) }
-    return cities_visited
-  end
-
   def save()
-    sql = "INSERT INTO cities (name, country_id, visited)
-           VALUES ($1, $2, $3)
+    sql = "INSERT INTO cities (name, country_id)
+           VALUES ($1, $2)
            RETURNING id"
-    values = [@name, @country_id, @visited]
+    values = [@name, @country_id]
     results = SqlRunner.run(sql, values)
     @id = results.first()['id'].to_i
   end
 
   def update()
     sql = "UPDATE cities
-        SET (name, country_id, visited) = ($1, $2, $3)
-        WHERE id = $4"
-    values = [@name, @country_id, @visited, @id]
+        SET (name, country_id) = ($1, $2)
+        WHERE id = $3"
+    values = [@name, @country_id, @id]
     SqlRunner.run( sql, values )
   end
 
