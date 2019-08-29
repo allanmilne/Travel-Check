@@ -1,5 +1,5 @@
 <h2>Edit <%= @country.name %></h2>
-
+<a href="/countries/<%= @country.id %>">Back</a>
 <div>
   <form method="post" action="/countries/<%= @country.id %>">
   <fieldset>
@@ -8,9 +8,4 @@
     <input type="submit" value="Save">
   </fieldset>
   </form>
-</div>
-
-<br />
-<div>
-  <a href="/countries/<%= @country.id %>">Back</a>
 </div>

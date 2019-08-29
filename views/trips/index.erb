@@ -1,25 +1,22 @@
 <h2>Trips</h2>
-<table>
-  <tr>
-    <th>Trip Name</th>
-    <th>Visited</th>
-    <th>City</th>
-  </tr>
-  <% for trip in @trips %>
-  <tr>
-    <td><a href="/trips/<%=trip.id%>"><%= trip.name %></a></td>
-    <td><% if trip.visited == 'f'%>
-          <%= "❌" %>
-        <% else %>
-          <%= "✅" %>
-          <% end %></td>
-    <td><%= trip.city.name %></td>
-  </tr>
-  <% end %>
-</table>
-
-<br />
-
+<a href="/trips/new">Add Trip</a>
 <div>
-  <a href="/trips/new">Add Trip</a>
+  <table>
+    <tr>
+      <th>Trip Name</th>
+      <th>Visited</th>
+      <th>City</th>
+    </tr>
+    <% for trip in @trips %>
+    <tr>
+      <td><a href="/trips/<%=trip.id%>"><%= trip.name %></a></td>
+      <td><% if trip.visited == 'f'%>
+            <%= "❌" %>
+          <% else %>
+            <%= "✅" %>
+            <% end %></td>
+      <td><%= trip.city.name %></td>
+    </tr>
+    <% end %>
+  </table>
 </div>

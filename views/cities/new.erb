@@ -1,7 +1,8 @@
 <h2>Add a city to your bucket list</h2>
+<a href="/cities">Back</a>
 
 <form method="post" action="/cities">
-<!-- drop down country list -->
+<fieldset>
   <label for="country-id">Country Name:</label>
   <select id="country-id" name="country_id">
     <% for country in @countries %>
@@ -9,15 +10,10 @@
     <%= country.name %> </option>
     <% end %>
   </select>
-<!-- input city name box -->
-    <label for="city-name">City Name:</label>
-    <input type="text" name="name" id="city-name"/>
-<!-- submit button -->
-    <input type="submit" value="Submit">
-  </form>
-
-<br />
-
-<div>
-  <a href="/cities">Back</a>
-</div>
+</fieldset>
+<fieldset>
+  <label for="city-name">City Name:</label>
+  <input type="text" name="name" id="city-name"/>
+</fieldset>
+  <input type="submit" value="Submit">
+</form>

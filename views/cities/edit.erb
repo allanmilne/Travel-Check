@@ -1,5 +1,5 @@
 <h2>Edit <%= @city.name %></h2>
-
+<a href="/cities/<%= @city.id %>">Back</a>
 <div>
   <form method="post" action="/cities/<%= @city.id %>">
   <fieldset>
@@ -20,9 +20,4 @@
   </fieldset>
     <input type="submit" value="Submit">
   </form>
-</div>
-
-<br />
-<div>
-  <a href="/cities/<%= @city.id %>">Back</a>
 </div>
