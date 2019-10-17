@@ -1,9 +1,7 @@
 require( 'sinatra' )
-require( 'sinatra/contrib/all' )
-require('pry')
+require( 'sinatra/contrib/all' ) if development?
 require_relative( '../models/city' )
 require_relative( '../models/country' )
-also_reload( '../models/*' )
 
 # display all cities
 get "/cities" do

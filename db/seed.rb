@@ -1,7 +1,6 @@
 require_relative( "../models/country.rb" )
 require_relative( "../models/city.rb" )
 require_relative( "../models/trip.rb" )
-require("pry-byebug")
 
 system('psql -d travel_bucket_list -f db/travel_bucket_list.sql') # Recreates the db tables but must be run from project dir.
 
@@ -80,6 +79,3 @@ trip1.save
 trip2.save
 trip3.save
 trip4.save
-
-binding.pry
-nil

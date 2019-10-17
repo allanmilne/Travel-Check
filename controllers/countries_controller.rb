@@ -1,9 +1,7 @@
 require( 'sinatra' )
-require( 'sinatra/contrib/all' )
-require('pry')
+require( 'sinatra/contrib/all' ) if development?
 require_relative( '../models/country' )
 require_relative( '../models/city' )
-also_reload( '../models/*' )
 
 # display all countries
 get '/countries' do
@@ -48,9 +46,3 @@ post "/countries/:id" do
   @country.update
   redirect to "/countries"
 end
-
-# # show cities in a country
-# get "/countries/:id" do
-#   @country = Country.find(params['id'])
-#   erb :"countries/show"
-# end
