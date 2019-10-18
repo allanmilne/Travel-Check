@@ -11,15 +11,7 @@ class Country
     @name = options['name']
   end
 
-  # display cities belonging to Country
-  def cities()
-    sql = "SELECT * FROM cities
-           WHERE cities.country_id = $1"
-    values = [@id]
-    city_data = SqlRunner.run(sql, values)
-    cities = City.map_items(city_data)
-    return cities
-  end
+  #CREATE
 
   def save()
     sql = "INSERT INTO countries(name)
@@ -30,25 +22,7 @@ class Country
     @id = results.first()['id'].to_i
   end
 
-  def update()
-    sql = "UPDATE countries
-           SET name = $1
-           WHERE id = $2"
-    values = [@name, @id]
-    SqlRunner.run(sql, values)
-  end
-
-  def delete()
-    sql = "DELETE FROM countries
-           WHERE id = $1"
-    values = [@id]
-    SqlRunner.run(sql, values)
-  end
-
-  def self.delete_all()
-    sql = "DELETE FROM countries"
-    SqlRunner.run(sql)
-  end
+  #READ
 
   def self.all()
     sql = "SELECT * FROM countries"
@@ -56,11 +30,13 @@ class Country
     return Country.map_items(country_data)
   end
 
-  def self.delete(id)
-    sql = "DELETE FROM countries
-    WHERE id = $1"
-    values = [id]
-    SqlRunner.run( sql, values )
+  def cities()
+    sql = "SELECT * FROM cities
+           WHERE cities.country_id = $1"
+    values = [@id]
+    city_data = SqlRunner.run(sql, values)
+    cities = City.map_items(city_data)
+    return cities
   end
 
   def self.find(id)
@@ -71,7 +47,39 @@ class Country
     return Country.new(results.first)
   end
 
-  # Helper methods for mapping
+  # UPDATE
+
+  def update()
+    sql = "UPDATE countries
+           SET name = $1
+           WHERE id = $2"
+    values = [@name, @id]
+    SqlRunner.run(sql, values)
+  end
+
+  #DELETE
+
+  def self.delete_all()
+    sql = "DELETE FROM countries"
+    SqlRunner.run(sql)
+  end
+
+  def delete()
+    sql = "DELETE FROM countries
+           WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
+
+  def self.delete(id)
+    sql = "DELETE FROM countries
+    WHERE id = $1"
+    values = [id]
+    SqlRunner.run( sql, values )
+  end
+
+  # HELPER
+
   def self.map_items(country_data)
     result = country_data.map { |country| Country.new( country ) }
     return result

@@ -11,13 +11,7 @@ class City
     @country_id = options['country_id'].to_i
   end
 
-  # display the country that the city belongs to
-  def country
-    sql ="SELECT * FROM countries WHERE id = $1"
-    values = [@country_id]
-    results = SqlRunner.run(sql, values)
-    return Country.new(results.first)
-  end
+  # CREATE
 
   def save()
     sql = "INSERT INTO cities (name, country_id)
@@ -28,19 +22,7 @@ class City
     @id = results.first()['id'].to_i
   end
 
-  def update()
-    sql = "UPDATE cities
-        SET (name, country_id) = ($1, $2)
-        WHERE id = $3"
-    values = [@name, @country_id, @id]
-    SqlRunner.run( sql, values )
-  end
-
-  def delete()
-    sql = "DELETE FROM cities WHERE id = $1"
-    values = [@id]
-    SqlRunner.run(sql, values)
-  end
+  #READ
 
   def self.all()
     sql = "SELECT * FROM cities"
@@ -48,9 +30,11 @@ class City
     return City.map_items(city_data)
   end
 
-  def self.delete_all()
-    sql = "DELETE FROM cities"
-    SqlRunner.run(sql)
+  def country
+    sql ="SELECT * FROM countries WHERE id = $1"
+    values = [@country_id]
+    results = SqlRunner.run(sql, values)
+    return Country.new(results.first)
   end
 
   def self.find(id)
@@ -61,7 +45,31 @@ class City
     return City.new(results.first)
   end
 
-  # Helper methods for mapping
+  # UPDATE
+
+  def update()
+    sql = "UPDATE cities
+        SET (name, country_id) = ($1, $2)
+        WHERE id = $3"
+    values = [@name, @country_id, @id]
+    SqlRunner.run( sql, values )
+  end
+
+  # DELETE
+
+  def self.delete_all()
+    sql = "DELETE FROM cities"
+    SqlRunner.run(sql)
+  end
+
+  def delete()
+    sql = "DELETE FROM cities WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
+
+  # HELPER
+  
   def self.map_items(city_data)
     result = city_data.map { |city| City.new(city) }
     return result

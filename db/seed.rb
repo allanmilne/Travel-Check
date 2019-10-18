@@ -2,7 +2,9 @@ require_relative( "../models/country.rb" )
 require_relative( "../models/city.rb" )
 require_relative( "../models/trip.rb" )
 
-system('psql -d travel_bucket_list -f db/travel_bucket_list.sql') # Recreates the db tables but must be run from project dir.
+Country.delete_all()
+City.delete_all()
+Trip.delete_all()
 
 country1 = Country.new("name" => "China")
 country2 = Country.new("name" => "Brazil")
@@ -12,7 +14,7 @@ country5 = Country.new("name" => "Morocco")
 country6 = Country.new("name" => "Australia")
 
 city1 = City.new(
-  "name" => "Shanghai",
+"name" => "Shanghai",
   "country_id" => 1)
 city2 = City.new(
   "name" => "Beijing",

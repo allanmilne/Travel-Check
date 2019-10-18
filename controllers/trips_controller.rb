@@ -1,5 +1,10 @@
 require( 'sinatra' )
 require( 'sinatra/contrib/all' ) if development?
+require('rubygems')
+require('bundler/setup')
+
+also_reload('../models/*')
+
 require_relative( '../models/city' )
 require_relative( '../models/country' )
 require_relative( '../models/trip' )
