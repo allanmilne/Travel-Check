@@ -1,5 +1,7 @@
 ### RUBY PROJECT: Travel Bucket List
 
+![](preview-screenshot.png)
+
 After 4 weeks of learning Ruby, postgreSQl and using the Sinatra web framework I was tasked with the following brief...
 
 ## BRIEF:
